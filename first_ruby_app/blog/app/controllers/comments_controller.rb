@@ -23,6 +23,11 @@ class CommentsController < ApplicationController
     
   end
 
+  def update
+      @comment = Comment.find(params[:id])
+      redirect_to comments_path
+  end
+
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
