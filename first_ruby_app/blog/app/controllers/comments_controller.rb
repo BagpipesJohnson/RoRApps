@@ -6,6 +6,11 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
+  def show
+    @comment = Comment.Find(params[:id])
+  end
+
+
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
