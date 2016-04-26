@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @observation.description %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @observation.customer %>
+</p>
+
+<p>
+  <strong>Observation date:</strong>
+  <%= @observation.observation_date %>
+</p>
+
+<p>
+  <strong>Business unit:</strong>
+  <%= @observation.business_unit %>
+</p>
+
+<p>
+  <strong>Employee observer:</strong>
+  <%= @observation.employee_observer %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @observation.region %>
+</p>
+
+<p>
+  <strong>Feedback comments:</strong>
+  <%= @observation.feedback_comments %>
+</p>
+
+<p>
+  <strong>Service center:</strong>
+  <%= @observation.service_center %>
+</p>
+
+<p>
+  <strong>Observation type:</strong>
+  <%= @observation.observation_type %>
+</p>
+
+<%= link_to 'Edit', edit_observation_path(@observation) %> |
+<%= link_to 'Back', observations_path %>

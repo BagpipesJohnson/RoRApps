@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Survey Question Responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Observation</th>
+      <th>Survey question</th>
+      <th>Response</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey_question_responses.each do |survey_question_response| %>
+      <tr>
+        <td><%= survey_question_response.observation %></td>
+        <td><%= survey_question_response.survey_question %></td>
+        <td><%= survey_question_response.response %></td>
+        <td><%= link_to 'Show', survey_question_response %></td>
+        <td><%= link_to 'Edit', edit_survey_question_response_path(survey_question_response) %></td>
+        <td><%= link_to 'Destroy', survey_question_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Survey question response', new_survey_question_response_path %>

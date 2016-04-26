@@ -1,0 +1,29 @@
+<%= form_for(@defense_response) do |f| %>
+  <% if @defense_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@defense_response.errors.count, "error") %> prohibited this defense_response from being saved:</h2>
+
+      <ul>
+      <% @defense_response.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :observation_id %><br>
+    <%= f.text_field :observation_id %>
+  </div>
+  <div class="field">
+    <%= f.label :defense_id %><br>
+    <%= f.text_field :defense_id %>
+  </div>
+  <div class="field">
+    <%= f.label :response %><br>
+    <%= f.text_field :response %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

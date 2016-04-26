@@ -1,0 +1,29 @@
+<%= form_for(@employee_observer) do |f| %>
+  <% if @employee_observer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee_observer.errors.count, "error") %> prohibited this employee_observer from being saved:</h2>
+
+      <ul>
+      <% @employee_observer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :region_id %><br>
+    <%= f.text_field :region_id %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

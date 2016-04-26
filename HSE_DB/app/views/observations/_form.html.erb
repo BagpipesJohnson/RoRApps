@@ -1,0 +1,81 @@
+<%= form_for(@observation) do |f| %>
+  <% if @observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
+
+      <ul>
+      <% @observation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.select :customer_id, @customers %>
+  </div>
+  <div class="field">
+    <%= f.label :observation_date %><br>
+    <%= f.datetime_select :observation_date %>
+  </div>
+  <div class="field">
+    <%= f.label :business_unit_id %><br>
+    <%= f.select :business_unit_id,  @business_units %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_observer_id %><br>
+    <%= f.select :employee_observer_id, @employee_observers %>
+  </div>
+  <div class="field">
+    <%= f.label :region_id %><br>
+    <%= f.select :region_id, @regions %>
+  </div>
+  <div class="field">
+    <%= f.label :feedback_comments %><br>
+    <%= f.text_field :feedback_comments %>
+  </div>
+  <div class="field">
+    <%= f.label :service_center_id %><br>
+    <%= f.select :service_center_id, @service_centers %>
+  </div>
+  <div class="field">
+    <%= f.label :observation_type_id %><br>
+    <%= f.select :observation_type_id, @observation_types %>
+  </div>
+
+  <table border="1" class="questions">
+
+  <%= f.fields_for :survey_question_responses do |sq| %>
+  <tr>
+    <td><%= sq.label sq.object.survey_question.question_text unless sq.object.survey_question.nil? %> </td>
+    <td><%= sq.text_field :response %></td>
+    <%= sq.hidden_field :survey_question_id %>
+    <%= sq.hidden_field :id %>
+  </tr>
+  <% end %>
+
+  </table>
+
+  <table border="1" class="defenses">
+
+  <%= f.fields_for :defense_responses do |dr| %>
+  <tr>
+    <td><%= dr.label dr.object.defense.description unless dr.object.defense.description.nil? %> </td>
+    <td><%= dr.text_field :response %></td>
+    <%= dr.hidden_field :defense_id %>
+    <%= dr.hidden_field :id %>
+  </tr>
+  <% end %>
+
+  </table>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
