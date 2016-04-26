@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Defense Responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Observation</th>
+      <th>Defense</th>
+      <th>Response</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @defense_responses.each do |defense_response| %>
+      <tr>
+        <td><%= defense_response.observation %></td>
+        <td><%= defense_response.defense %></td>
+        <td><%= defense_response.response %></td>
+        <td><%= link_to 'Show', defense_response %></td>
+        <td><%= link_to 'Edit', edit_defense_response_path(defense_response) %></td>
+        <td><%= link_to 'Destroy', defense_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Defense response', new_defense_response_path %>

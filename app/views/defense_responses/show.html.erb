@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @defense_response.observation %>
+</p>
+
+<p>
+  <strong>Defense:</strong>
+  <%= @defense_response.defense %>
+</p>
+
+<p>
+  <strong>Response:</strong>
+  <%= @defense_response.response %>
+</p>
+
+<%= link_to 'Edit', edit_defense_response_path(@defense_response) %> |
+<%= link_to 'Back', defense_responses_path %>
