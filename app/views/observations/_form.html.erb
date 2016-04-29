@@ -1,81 +1,115 @@
 <%= form_for(@observation) do |f| %>
-  <% if @observation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
+<% if @observation.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
 
-      <ul>
-      <% @observation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @observation.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
+<div class="row">
+  <div class="col-md-6">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, {class: "form-control"} %>
   </div>
-  <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.select :customer_id, @customers %>
-  </div>
-  <div class="field">
-    <%= f.label :observation_date %><br>
-    <%= f.datetime_select :observation_date %>
-  </div>
-  <div class="field">
-    <%= f.label :business_unit_id %><br>
-    <%= f.select :business_unit_id,  @business_units %>
-  </div>
-  <div class="field">
+</div>
+<div class="row">
+
+  <div class="col-md-2">
     <%= f.label :employee_observer_id %><br>
-    <%= f.select :employee_observer_id, @employee_observers %>
+    <%= f.select :employee_observer_id, @employee_observers, {}, {class: "form-control"} %>
   </div>
-  <div class="field">
-    <%= f.label :region_id %><br>
-    <%= f.select :region_id, @regions %>
+
+
+  <div class="col-md-2">
+    <%= f.label :observation_date %><br>
+    <%= f.datetime_select :observation_date, {} %>
   </div>
-  <div class="field">
-    <%= f.label :feedback_comments %><br>
-    <%= f.text_field :feedback_comments %>
-  </div>
-  <div class="field">
-    <%= f.label :service_center_id %><br>
-    <%= f.select :service_center_id, @service_centers %>
-  </div>
-  <div class="field">
+
+
+  <div class="col-md-2">
     <%= f.label :observation_type_id %><br>
-    <%= f.select :observation_type_id, @observation_types %>
+    <%= f.select :observation_type_id, @observation_types, {}, {class: "form-control"} %>
   </div>
 
-  <table border="1" class="questions">
 
-  <%= f.fields_for :survey_question_responses do |sq| %>
-  <tr>
-    <td><%= sq.label sq.object.survey_question.question_text unless sq.object.survey_question.nil? %> </td>
-    <td><%= sq.text_field :response %></td>
-    <%= sq.hidden_field :survey_question_id %>
-    <%= sq.hidden_field :id %>
-  </tr>
-  <% end %>
+</div>
+<div class="row">
 
-  </table>
-
-  <table border="1" class="defenses">
-
-  <%= f.fields_for :defense_responses do |dr| %>
-  <tr>
-    <td><%= dr.label dr.object.defense.description unless dr.object.defense.description.nil? %> </td>
-    <td><%= dr.text_field :response %></td>
-    <%= dr.hidden_field :defense_id %>
-    <%= dr.hidden_field :id %>
-  </tr>
-  <% end %>
-
-  </table>
-
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-md-1">
+    <%= f.label :business_unit_id %><br>
+    <%= f.select :business_unit_id,  @business_units, {}, {class: "form-control"} %>
   </div>
+
+  <div class="col-md-2">
+    <%= f.label :service_center_id %><br>
+    <%= f.select :service_center_id, @service_centers, {}, {class: "form-control"} %>
+  </div>
+
+  <div class="col-md-2">
+    <%= f.label :region_id %><br>
+    <%= f.select :region_id, @regions, {}, {class: "form-control"} %>
+  </div>
+
+  <div class="col-md-1">
+    <%= f.label :customer_id %><br>
+    <%= f.select :customer_id, @customers , {}, {class: "form-control"} %>
+  </div>
+
+</div>
+
+<div style="height: 10px">
+</div>
+
+<div class="row">
+  <div class="table-responsive">
+    <div class="col-md-6">
+      <table border="1" class="table">
+
+        <%= f.fields_for :survey_question_responses do |sq| %>
+        <tr>
+          <td class="col-md-3"><%= sq.label sq.object.survey_question.question_text unless sq.object.survey_question.nil? %> </td>
+          <td class="col-md-3"><%= sq.text_field :response, {class:"form-control"} %></td>
+          <%= sq.hidden_field :survey_question_id %>
+          <%= sq.hidden_field :id %>
+        </tr>
+        <% end %>
+
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="table-responsive">
+    <div class="col-md-6">
+      <table border="1" class="table">
+
+        <%= f.fields_for :defense_responses do |dr| %>
+        <tr>
+          <td class="col-md-3"><%= dr.label dr.object.defense.description unless dr.object.defense.description.nil? %> </td>
+          <td class="col-md-3"><%= dr.text_field :response, {class:"form-control"} %></td>
+          <%= dr.hidden_field :defense_id %>
+          <%= dr.hidden_field :id %>
+        </tr>
+        <% end %>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.label :feedback_comments %><br>
+    <%= f.text_area :feedback_comments, {class: "form-control", rows: "2"}%>
+  </div>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>
